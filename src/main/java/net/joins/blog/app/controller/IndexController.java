@@ -53,7 +53,7 @@ public class IndexController extends BaseController {
                 .subtitle("Problems look mighty small from 150 miles up")
                 .writter("misolab")
                 .updated("2021-04-30")
-                .content("Wellcome!!<img class=\"img-fluid\" src=\"assets/img/post-sample-image.jpg\">")
+                .content("Wellcome!!<img class=\"img-fluid\" src=\"/images/post-sample-image.jpg\">")
                 .bgImage("assets/img/post-bg.jpg")
                 .build();
 
