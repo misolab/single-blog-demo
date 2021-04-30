@@ -16,13 +16,6 @@ import java.util.Arrays;
 @RequestMapping("/")
 public class IndexController extends BaseController {
 
-    @GetMapping
-    public String index(Model model) {
-        model.addAttribute("name", "hello misolab");
-        model.addAttribute("list", Arrays.asList(1, 2, 3, 4));
-        return "index";
-    }
-
     @GetMapping("/api")
     public ResponseEntity<Object> index() {
         ApiResponse response = ApiResponse.of()
@@ -30,5 +23,16 @@ public class IndexController extends BaseController {
                 .add("current", DateTimeUtils.toString(System.currentTimeMillis(), "yyyy-MM-dd HH:mm:ss"));
         return response.toResponseEntity();
     }
+
+    @GetMapping("index.html")
+    public String index(Model model) {
+        return "index";
+    }
+
+    @GetMapping("post.html")
+    public String post(Model model) {
+        return "post";
+    }
+
 
 }
