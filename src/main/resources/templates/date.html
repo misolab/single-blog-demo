@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script th:src="@{/webjars/vue/vue.min.js}"></script>
+</head>
+<body>
+<div id="wrap">
+    <h1>{{ selected.fullDay }}</h1>
+    <ul>
+        <li v-for="d in dates" @click="click(d)">{{ d.dd }} <p v-if="d.holiday">{{d.holiday}}</p></li>
+    </ul>
+    <button @click="next">Next</button>
+
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript" th:inline="javascript">
+  var _d = /*[[ ${dates} ]]*/{};
+
+  var wrap = new Vue({
+    el: "#wrap",
+    data: function () {
+      return {
+        dates: _d,
+        selected: _d[0]
+      }
+    },
+    methods: {
+      click: function (d) {
+        this.selected = d;
+      },
+      next: function () {
+        const url = '/api?date=' + this.selected.date + "&count=14";
+        $.ajax({
+          type: "GET",
+          url: url,
+          success: function (json) {
+            // console.log("json", json.data)
+            wrap.dates = json.data.dates;
+          },
+        });
+      }
+    }
+  })
+</script>
+</body>
+</html>
