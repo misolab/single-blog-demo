@@ -1,10 +1,6 @@
 package net.joins.blog.domain.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import org.hibernate.annotations.UpdateTimestamp;
+import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -28,6 +24,7 @@ public class Post {
     @Column(name = "TITLE", nullable = false)
     String title;
 
+    @Setter
     @Column(name = "SUBTITLE")
     String subtitle;
 
@@ -35,7 +32,6 @@ public class Post {
     String writter;
 
     @Column(name = "UPDATED")
-    @UpdateTimestamp
     Timestamp updated;
 
     @Column(name = "CONTENT")
